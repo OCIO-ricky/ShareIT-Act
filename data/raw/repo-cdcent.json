@@ -78956,4 +78956,118 @@
     "privateID": "github_1012506778",
     "_url": "https://github.com/cdcent/2025-26-Test-Repo"
   }
+]rl": "https://github.com/cdcent/2025-26-Test-Repo"
+  },
+  {
+    "name": "edav-dataacademy",
+    "description": "",
+    "organization": "cdcent",
+    "repositoryURL": "https://github.com/CDCgov/ShareIT-Act/blob/main/docs/assets/files/code_exempted.pdf",
+    "homepageURL": "https://github.com/cdcent/edav-dataacademy",
+    "vcs": "git",
+    "repositoryVisibility": "private",
+    "status": "development",
+    "version": "N/A",
+    "laborHours": 0,
+    "languages": [],
+    "tags": [],
+    "date": {
+      "created": "2025-07-03T17:24:34+00:00",
+      "lastModified": "2025-07-07T16:38:26+00:00",
+      "metadataLastUpdated": "2025-07-07T18-26-17"
+    },
+    "permissions": {
+      "usageType": "exemptByCIO",
+      "exemptionText": "It's an internal repository.",
+      "licenses": [
+        {
+          "name": "Apache License 2.0"
+        }
+      ]
+    },
+    "contact": {
+      "email": "shareit@cdc.gov",
+      "name": "Centers for Disease Control and Prevention (CDC)"
+    },
+    "repo_id": 1013309313,
+    "readme_url": "https://github.com/cdcent/edav-dataacademy/blob/master/README.md",
+    "privateID": "github_1013309313",
+    "_url": "https://github.com/cdcent/edav-dataacademy"
+  },
+  {
+    "name": "positutils",
+    "description": "EDAV posit utilities ",
+    "organization": "cdcent",
+    "repositoryURL": "https://github.com/CDCgov/ShareIT-Act/blob/main/docs/assets/files/code_exempted.pdf",
+    "homepageURL": "https://github.com/cdcent/positutils",
+    "vcs": "git",
+    "repositoryVisibility": "private",
+    "status": "development",
+    "version": "N/A",
+    "laborHours": 0,
+    "languages": [
+      "R",
+      "Shell",
+      "Rez"
+    ],
+    "tags": [],
+    "date": {
+      "created": "2025-07-03T21:52:03+00:00",
+      "lastModified": "2025-07-03T21:54:38+00:00",
+      "metadataLastUpdated": "2025-07-07T18-26-18"
+    },
+    "permissions": {
+      "usageType": "exemptByCIO",
+      "exemptionText": "It's an internal repository.",
+      "licenses": [
+        {
+          "name": "Apache License 2.0"
+        }
+      ]
+    },
+    "contact": {
+      "email": "shareit@cdc.gov",
+      "name": "Centers for Disease Control and Prevention (CDC)"
+    },
+    "repo_id": 1013420853,
+    "readme_url": "https://github.com/cdcent/positutils/blob/master/README.md",
+    "privateID": "github_1013420853",
+    "_url": "https://github.com/cdcent/positutils"
+  },
+  {
+    "name": "oamd-bio-workflow-phylophoenix",
+    "description": "",
+    "organization": "cdcent",
+    "repositoryURL": "https://github.com/CDCgov/ShareIT-Act/blob/main/docs/assets/files/code_exempted.pdf",
+    "homepageURL": "https://github.com/cdcent/oamd-bio-workflow-phylophoenix",
+    "vcs": "git",
+    "repositoryVisibility": "private",
+    "status": "development",
+    "version": "N/A",
+    "laborHours": 0,
+    "languages": [],
+    "tags": [],
+    "date": {
+      "created": "2025-07-03T22:05:35+00:00",
+      "lastModified": "2025-07-03T22:05:36+00:00",
+      "metadataLastUpdated": "2025-07-07T18-26-20"
+    },
+    "permissions": {
+      "usageType": "exemptByCIO",
+      "exemptionText": "It's an internal repository.",
+      "licenses": [
+        {
+          "name": "Apache License 2.0"
+        }
+      ]
+    },
+    "contact": {
+      "email": "shareit@cdc.gov",
+      "name": "Centers for Disease Control and Prevention (CDC)"
+    },
+    "repo_id": 1013424873,
+    "readme_url": "",
+    "privateID": "github_1013424873",
+    "_url": "https://github.com/cdcent/oamd-bio-workflow-phylophoenix"
+  }
 ]
