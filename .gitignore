@@ -180,6 +180,9 @@ ENV/
 env.bak/
 venv.bak/
 
+/secure
+.pem
+
 # Spyder project settings
 .spyderproject
 .spyproject
