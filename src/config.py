@@ -53,7 +53,8 @@ class Config:
         "amd": "Office of Advanced Molecular Detection", "oamd": "Office of Advanced Molecular Detection",          
       }
     }
-  def credentials(self, org_name=None):
+  def _get_credentials_from_env(self, org_name=None):
+#  def credentials(self, org_name=None):
     # Use uppercase org_name as a prefix for environment variables
     prefix = f"{org_name.upper()}_" if org_name else ""
 
@@ -90,39 +91,47 @@ class Config:
       'github_app_private_key': private_key,
       'github_token': os.environ.get(f'{prefix}GH_PAT_TOKEN', '')
     }
-
-  def verify_github_credentials(self, creds):
+  def _validate_credentials(self, creds):
+    """Validates the provided credentials dictionary and returns a list of errors."""
     errors = []
+    
+#  def verify_github_credentials(self, creds):
+#    errors = []
+    if not creds.get('github_org'):
+        errors.append("GitHub organization is not specified")
+
+    # If a PAT is provided and valid, we don't need to check for App credentials
     if creds.get('github_token'):
       if not creds['github_token'].startswith(('ghp_', 'github_pat_')):
         errors.append("GitHub token appears to be invalid (should start with 'ghp_' or 'github_pat_')")
       else:
-        return [], True
-
+        # Token auth is valid, no need to check App creds further.
+        # If org is also missing, that error will be returned.
+        return errors
+      
     has_app_id = creds.get('github_app_id')
     has_installation_id = creds.get('github_app_installation_id')
     has_private_key = creds.get('github_app_private_key')
-    if has_app_id and has_installation_id and has_private_key:
-      if not creds['github_app_private_key'].strip().startswith('-----BEGIN RSA PRIVATE KEY-----'):
-        errors.append("GitHub App Private Key is invalid (must be a valid RSA private key)")
-      else:
-        return [], True
+    if not (has_app_id and has_installation_id and has_private_key):
+        missing = []
+        prefix = creds.get("prefix", "")
+        if not has_app_id:
+            missing.append(f'{prefix}GH_APP_ID')
+        if not has_installation_id:
+            missing.append(f'{prefix}GH_APP_INSTALLATION_ID')
+        if not has_private_key:
+            missing.append(f'{prefix}GH_APP_PRIVATE_KEY_PATH')
+        
+        if missing:
+              errors.append(f"Missing GitHub App credentials. Either provide a valid GH_PAT_TOKEN or all of the following: {', '.join(missing)}")
 
-    if has_app_id or has_installation_id or has_private_key:
-      missing = []
-      if not has_app_id: missing.append("App ID")
-      if not has_installation_id: missing.append("Installation ID")
-      if not has_private_key: missing.append("Private Key")
-      if missing:
-        errors.append(f"GitHub App is missing: {', '.join(missing)}")
-    if not errors:
-      errors.append("No GitHub authentication configured. Please provide either GitHub App credentials or a Personal Access Token.")
-    return errors, False
+    return errors
 
-  def verify(self, org_name=None):
-    creds = self.credentials(org_name)
-    errors, is_valid = self.verify_github_credentials(creds)
-    if not creds.get('github_org'):
-      errors.append("GitHub organization is not specified")
-      is_valid = False
-    return errors, is_valid, creds
+  def get_and_verify_credentials(self, org_name=None):
+    """
+    Gets and validates credentials for a given organization.
+    Returns a tuple of (credentials, errors).
+    """
+    creds = self._get_credentials_from_env(org_name)
+    errors = self._validate_credentials(creds)
+    return creds, errors

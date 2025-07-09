@@ -15,4 +15,4 @@ services:
     volumes:
       - ./data:/app/data
       - ./secure/cdcent_key.pem:/app/secure/cdcent_key.pem:ro
-    command: ["python", "main.py", "--org", "cdcent", "--limit", "50"]
+    command: ["python", "main.py", "--org", "cdcent", "--limit", "20"]

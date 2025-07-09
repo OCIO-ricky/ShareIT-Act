@@ -5,6 +5,7 @@ from src.sanitize import Sanitizer
 from datetime import datetime
 from pathlib import Path
 import sys
+import os
 import json
 import argparse
 
@@ -28,12 +29,12 @@ def main():
   # Determine the target organization from the --org flag or the .env file
   org_name = args.org or os.environ.get('GH_ORG')
   if not org_name:
-    print("Exiting: No GitHub organization specified. Use the --org flag or set GH_ORG in the .env file.")
+    print("Exiting: No GitHub organization specified. Use the --org flag or set GH_ORG in your .env file.")
     sys.exit(1)
 
-  errors, isVerified, credentials = config.verify(org_name)
-  if errors or not isVerified:
-    print(f"Exiting due to bad configuration for organization '{org_name}': {errors}")
+  credentials, errors = config.get_and_verify_credentials(org_name)
+  if errors:
+    print(f"Exiting due to configuration errors for organization '{org_name}':\n- " + "\n- ".join(errors))
     sys.exit(1)
 
   print(f'Targeting GitHub organization: https://github.com/{org_name}')
