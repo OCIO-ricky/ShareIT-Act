@@ -79070,4 +79070,243 @@
     "privateID": "github_1013424873",
     "_url": "https://github.com/cdcent/oamd-bio-workflow-phylophoenix"
   }
+]missions": {
+      "usageType": "exemptByCIO",
+      "exemptionText": "It's an internal repository.",
+      "licenses": [
+        {
+          "name": "Apache License 2.0"
+        }
+      ]
+    },
+    "contact": {
+      "email": "shareit@cdc.gov",
+      "name": "Centers for Disease Control and Prevention (CDC)"
+    },
+    "repo_id": 1015636287,
+    "readme_url": "https://github.com/cdcent/cfa-reedfrost-rs/blob/main/README.md",
+    "privateID": "github_1015636287",
+    "_url": "https://github.com/cdcent/cfa-reedfrost-rs"
+  },
+  {
+    "name": "edav-ai-snowclassification",
+    "description": "",
+    "organization": "cdcent",
+    "repositoryURL": "https://github.com/CDCgov/ShareIT-Act/blob/main/docs/assets/files/code_exempted.pdf",
+    "homepageURL": "https://github.com/cdcent/edav-ai-snowclassification",
+    "vcs": "git",
+    "repositoryVisibility": "private",
+    "status": "development",
+    "version": "N/A",
+    "laborHours": 0,
+    "languages": [],
+    "tags": [],
+    "date": {
+      "created": "2025-07-07T21:01:39+00:00",
+      "lastModified": "2025-07-08T19:34:00+00:00",
+      "metadataLastUpdated": "2025-07-09T01-39-01"
+    },
+    "permissions": {
+      "usageType": "exemptByCIO",
+      "exemptionText": "It's an internal repository.",
+      "licenses": [
+        {
+          "name": "Apache License 2.0"
+        }
+      ]
+    },
+    "contact": {
+      "email": "shareit@cdc.gov",
+      "name": "Centers for Disease Control and Prevention (CDC)"
+    },
+    "repo_id": 1015659631,
+    "readme_url": "https://github.com/cdcent/edav-ai-snowclassification/blob/master/README.md",
+    "privateID": "github_1015659631",
+    "_url": "https://github.com/cdcent/edav-ai-snowclassification"
+  },
+  {
+    "name": "MAD",
+    "description": "Must Assessment and Disposition Project",
+    "organization": "cdcent",
+    "repositoryURL": "https://github.com/CDCgov/ShareIT-Act/blob/main/docs/assets/files/code_exempted.pdf",
+    "homepageURL": "https://github.com/cdcent/MAD",
+    "vcs": "git",
+    "repositoryVisibility": "private",
+    "status": "development",
+    "version": "N/A",
+    "laborHours": 0,
+    "languages": [],
+    "tags": [],
+    "date": {
+      "created": "2025-07-08T11:31:59+00:00",
+      "lastModified": "2025-07-08T11:31:59+00:00",
+      "metadataLastUpdated": "2025-07-09T01-39-03"
+    },
+    "permissions": {
+      "usageType": "exemptByCIO",
+      "exemptionText": "It's an internal repository.",
+      "licenses": [
+        {
+          "name": "Apache License 2.0"
+        }
+      ]
+    },
+    "contact": {
+      "email": "shareit@cdc.gov",
+      "name": "Centers for Disease Control and Prevention (CDC)"
+    },
+    "repo_id": 1016026137,
+    "readme_url": "",
+    "privateID": "github_1016026137",
+    "_url": "https://github.com/cdcent/MAD"
+  },
+  {
+    "name": "MuGSI_Geocode_Cleaning",
+    "description": "Repository for DHQP/ERIB/MuGSI to maintain code for generating geocode cleaning and validation reports for sharing with EIP sites",
+    "organization": "cdcent",
+    "repositoryURL": "https://github.com/CDCgov/ShareIT-Act/blob/main/docs/assets/files/code_exempted.pdf",
+    "homepageURL": "https://github.com/cdcent/MuGSI_Geocode_Cleaning",
+    "vcs": "git",
+    "repositoryVisibility": "private",
+    "status": "development",
+    "version": "N/A",
+    "laborHours": 0,
+    "languages": [],
+    "tags": [],
+    "date": {
+      "created": "2025-07-08T18:18:31+00:00",
+      "lastModified": "2025-07-08T19:34:03+00:00",
+      "metadataLastUpdated": "2025-07-09T01-39-05"
+    },
+    "permissions": {
+      "usageType": "exemptByCIO",
+      "exemptionText": "It's an internal repository.",
+      "licenses": [
+        {
+          "name": "Apache License 2.0"
+        }
+      ]
+    },
+    "contact": {
+      "email": "shareit@cdc.gov",
+      "name": "Centers for Disease Control and Prevention (CDC)"
+    },
+    "repo_id": 1016258102,
+    "readme_url": "https://github.com/cdcent/MuGSI_Geocode_Cleaning/blob/master/README.md",
+    "privateID": "github_1016258102",
+    "_url": "https://github.com/cdcent/MuGSI_Geocode_Cleaning"
+  },
+  {
+    "name": "ASPNetOTEL",
+    "description": "",
+    "organization": "cdcent",
+    "repositoryURL": "https://github.com/CDCgov/ShareIT-Act/blob/main/docs/assets/files/code_exempted.pdf",
+    "homepageURL": "https://github.com/cdcent/ASPNetOTEL",
+    "vcs": "git",
+    "repositoryVisibility": "private",
+    "status": "development",
+    "version": "N/A",
+    "laborHours": 0,
+    "languages": [],
+    "tags": [],
+    "date": {
+      "created": "2025-07-08T20:05:55+00:00",
+      "lastModified": "2025-07-08T20:05:55+00:00",
+      "metadataLastUpdated": "2025-07-09T01-39-06"
+    },
+    "permissions": {
+      "usageType": "exemptByCIO",
+      "exemptionText": "It's an internal repository.",
+      "licenses": [
+        {
+          "name": "Apache License 2.0"
+        }
+      ]
+    },
+    "contact": {
+      "email": "shareit@cdc.gov",
+      "name": "Centers for Disease Control and Prevention (CDC)"
+    },
+    "repo_id": 1016307662,
+    "readme_url": "",
+    "privateID": "github_1016307662",
+    "_url": "https://github.com/cdcent/ASPNetOTEL"
+  },
+  {
+    "name": "ASPNetOpenTelemetry",
+    "description": "",
+    "organization": "cdcent",
+    "repositoryURL": "https://github.com/CDCgov/ShareIT-Act/blob/main/docs/assets/files/code_exempted.pdf",
+    "homepageURL": "https://github.com/cdcent/ASPNetOpenTelemetry",
+    "vcs": "git",
+    "repositoryVisibility": "private",
+    "status": "development",
+    "version": "N/A",
+    "laborHours": 0,
+    "languages": [
+      "CSS",
+      "C#",
+      "HTML",
+      "JavaScript"
+    ],
+    "tags": [],
+    "date": {
+      "created": "2025-07-08T20:16:19+00:00",
+      "lastModified": "2025-07-08T20:45:18+00:00",
+      "metadataLastUpdated": "2025-07-09T01-39-07"
+    },
+    "permissions": {
+      "usageType": "exemptByCIO",
+      "exemptionText": "It's an internal repository.",
+      "licenses": [
+        {
+          "name": "Apache License 2.0"
+        }
+      ]
+    },
+    "contact": {
+      "email": "shareit@cdc.gov",
+      "name": "Centers for Disease Control and Prevention (CDC)"
+    },
+    "repo_id": 1016312092,
+    "readme_url": "",
+    "privateID": "github_1016312092",
+    "_url": "https://github.com/cdcent/ASPNetOpenTelemetry"
+  },
+  {
+    "name": "ASPNetOpenTelemetry-",
+    "description": "",
+    "organization": "cdcent",
+    "repositoryURL": "https://github.com/CDCgov/ShareIT-Act/blob/main/docs/assets/files/code_exempted.pdf",
+    "homepageURL": "https://github.com/cdcent/ASPNetOpenTelemetry-",
+    "vcs": "git",
+    "repositoryVisibility": "private",
+    "status": "development",
+    "version": "N/A",
+    "laborHours": 0,
+    "languages": [],
+    "tags": [],
+    "date": {
+      "created": "2025-07-08T20:36:55+00:00",
+      "lastModified": "2025-07-08T20:36:55+00:00",
+      "metadataLastUpdated": "2025-07-09T01-39-09"
+    },
+    "permissions": {
+      "usageType": "exemptByCIO",
+      "exemptionText": "It's an internal repository.",
+      "licenses": [
+        {
+          "name": "Apache License 2.0"
+        }
+      ]
+    },
+    "contact": {
+      "email": "shareit@cdc.gov",
+      "name": "Centers for Disease Control and Prevention (CDC)"
+    },
+    "repo_id": 1016320104,
+    "readme_url": "",
+    "privateID": "github_1016320104",
+    "_url": "https://github.com/cdcent/ASPNetOpenTelemetry-"
+  }
 ]
