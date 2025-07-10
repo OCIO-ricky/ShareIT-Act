@@ -22,7 +22,7 @@ class Config:
           'markdown', 'text', 'html', 'css', 'shell', 'dockerfile', 'powershell'
       ],
       'ORG_ACRONYMS': {
-        "cdc": "Centers for Disease Control and Prevention", "od": "Office of the Director",
+        "od": "Office of the Director",
         "om": "Office of Mission Support", "ocoo": "Office of the Chief Operating Officer",
         "oadc": "Office of the Associate Directory of Communications",
         "ocio": "Office of the Chief Information Officer",
@@ -50,7 +50,9 @@ class Config:
         "ddnidd": "Deputy Director for Non-Infectious Diseases",
         "cfa": "Center for Forecasting and Outbreak Analytics",
         "ophdst": "Office of Public Health Data, Surveillance, and Technology",
-        "amd": "Office of Advanced Molecular Detection", "oamd": "Office of Advanced Molecular Detection",          
+        "amd": "Office of Advanced Molecular Detection", 
+        "oamd": "Office of Advanced Molecular Detection",  
+        'cdc': 'Centers for Disease Control and Prevention',        # CDC should be the last always.
       }
     }
   def _get_credentials_from_env(self, org_name=None):

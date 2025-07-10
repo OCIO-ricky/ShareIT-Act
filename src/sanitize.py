@@ -42,7 +42,9 @@ class Sanitizer:
         self.config = Config().get_app_config()
         self.email_regex = re.compile(r'[\w.+-]+@cdc\.gov')
         # Case-insensitive regex to find "Key: Value" at the start of a line
-        self.marker_regex_template = r'(?i)^\s*{}:\s*(.*)$'
+        # The key is wrapped in a non-capturing group (?:...) to correctly handle
+        # alternation (e.g., 'Organization|Org') without breaking group indexing.
+        self.marker_regex_template = r'(?i)^\s*(?:{}):\s*(.*)$'
 
     def _get_file_content(self, repo, file_path):
         """
@@ -81,21 +83,47 @@ class Sanitizer:
         match = regex.search(content)
         return match.group(1).strip() if match else None
 
-    def _infer_organization(self, repo, readme_content):
-        """Infers the organization based on README markers and repository name."""
+    def _infer_organization(self, repo, readme_content, tags):
+        """Infers the organization based on README markers, tags, content, and repository name/URL."""
         # 1. README Marker (highest priority)
-        org_from_readme = self._parse_marker(readme_content, 'Organization|Org')
-        if org_from_readme:
-            return org_from_readme
+        org_from_marker = self._parse_marker(readme_content, 'Organization|Org')
+        if org_from_marker:
+            return org_from_marker
 
-        # 2. Programmatic Check for known acronyms in repo name
-        repo_name_lower = repo.name.lower()
-        for acronym, full_name in self.config.get('ORG_ACRONYMS', {}).items():
+        org_acronyms = self.config.get('ORG_ACRONYMS', {})
+        if not org_acronyms:
+            return self.config.get('AGENCY_NAME', 'CDC') # Fallback if no acronyms defined
+
+        # 2. Search for acronyms in repository tags
+        if tags:
+            # Create a lowercase set for efficient lookup
+            tags_lower = {tag.lower() for tag in tags}
+            for acronym, full_name in org_acronyms.items():
+                if acronym.lower() in tags_lower:
+                    return acronym
+
+        # 3. Search for acronyms in the entire README content
+        if readme_content:
+            readme_lower = readme_content.lower()
+            for acronym, full_name in org_acronyms.items():
+                # Use word boundaries to avoid matching substrings (e.g., 'flu' in 'influenza').
+                # The acronym is treated as a literal string, not a regex pattern.
+                if re.search(r'\b' + re.escape(acronym.lower()) + r'\b', readme_lower):
+                    return acronym
+
+        # 4. Programmatic Check for known acronyms in repo name and URL
+        # Combine name and URL for a broader search context.
+        search_string = f"{repo.name} {repo.html_url}".lower()
+        for acronym, full_name in org_acronyms.items():
             acronym_lower = acronym.lower()
-            if f"{acronym_lower}-" in repo_name_lower or f"-{acronym_lower}" in repo_name_lower:
-                return full_name
+            # Check for common patterns like 'acronym-', '-acronym', or '/acronym/'
+            if (f"{acronym_lower}-" in search_string or
+                f"-{acronym_lower}" in search_string or
+                f"/{acronym_lower}/" in search_string or
+                search_string.endswith(f"/{acronym_lower}")):
+                return acronym
 
-        # 3. Default to agency name
+        # 5. Default to agency name
         return self.config.get('AGENCY_NAME', 'CDC')
 
     def _infer_contact_email(self, repo, readme_content, codeowners_content):
@@ -228,9 +256,10 @@ class Sanitizer:
 
             # --- Fetch raw data and perform inferences ---
             languages = list(repo.get_languages().keys())
+            tags = repo.get_topics()
             usage_type, exemption_text, repository_url = self._infer_usage_and_url(repo, readme_content, languages)
             status = self._infer_status(repo, readme_content)
-            organization = self._infer_organization(repo, readme_content)
+            organization = self._infer_organization(repo, readme_content, tags)
             contact_email = self._infer_contact_email(repo, readme_content, codeowners_content)
             version = self._infer_version(repo, readme_content)
 
@@ -246,7 +275,7 @@ class Sanitizer:
                 "repositoryURL": repository_url,
                 "repositoryVisibility": "private" if repo.private else "public",
                 "languages": languages,
-                "tags": repo.get_topics(),
+                "tags": tags,
                 "contact": {
                     "email": contact_email
                 },
