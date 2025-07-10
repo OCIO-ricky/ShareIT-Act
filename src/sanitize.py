@@ -229,6 +229,30 @@ class Sanitizer:
         url = self.config.get('INSTRUCTIONS_PDF_URL')
         return usage_type, None, url
 
+    def _infer_description(self, repo, readme_content):
+        """
+        Infers the repository description based on platform data and README content.
+        1. Use the description from the GitHub platform if available.
+        2. If not, extract the first paragraph from the README as a fallback.
+        """
+        # 1. Use platform description first
+        if repo.description:
+            return repo.description.strip()
+
+        # 2. Fallback to README content for a summary
+        if readme_content:
+            # Split by paragraphs and find the first non-empty one
+            paragraphs = [p.strip() for p in readme_content.strip().split('\n\n') if p.strip()]
+            if paragraphs:
+                # Take the first paragraph, remove markdown headers, and clean up whitespace
+                first_paragraph = re.sub(r'^\s*#+\s*', '', paragraphs[0])
+                summary = ' '.join(first_paragraph.splitlines()).strip()
+                # Truncate to a reasonable length to avoid overly long descriptions
+                return (summary[:250] + '...') if len(summary) > 253 else summary
+
+        # 3. Default to empty string if no description can be found
+        return ""
+
     def get_repository_metadata(self, repo) -> dict:
         """
         Processes a single repository object and returns its sanitized metadata.
@@ -257,6 +281,7 @@ class Sanitizer:
             # --- Fetch raw data and perform inferences ---
             languages = list(repo.get_languages().keys())
             tags = repo.get_topics()
+            description = self._infer_description(repo, readme_content)
             usage_type, exemption_text, repository_url = self._infer_usage_and_url(repo, readme_content, languages)
             status = self._infer_status(repo, readme_content)
             organization = self._infer_organization(repo, readme_content, tags)
@@ -267,7 +292,7 @@ class Sanitizer:
             metadata = {
                 "name": repo.name,
                 "organization": organization,
-                "description": repo.description or "",
+                "description": description,
                 "version": version,
                 "status": status,
                 "vcs": "git",
