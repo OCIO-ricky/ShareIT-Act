@@ -4,6 +4,7 @@ from src.sanitize import Sanitizer
 
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import itertools
 from pathlib import Path
 import sys
 import os
@@ -45,22 +46,28 @@ def main():
   elif credentials.get('raw_data_dir') == 'data/raw':
     credentials['raw_data_dir'] = str(Path(__file__).parent.absolute() / 'data/raw')
   print(f'Raw data directory: {credentials["raw_data_dir"]}', flush=True)
-  repos = Repository().get_repos(credentials)
+  # get_repos() now returns a PaginatedList iterator, not a full list.
+  repos_iterator = Repository().get_repos(credentials)
 
-  repos_to_process = repos
+  repos_to_process = repos_iterator
+  # We need the total count for progress reporting.
+  total_repos_to_process = repos_iterator.totalCount
   if args.limit:
-    repos_to_process = repos[:args.limit]
-    print(f"Limiting processing to the first {len(repos_to_process)} repositories.", flush=True)
+    # Use itertools.islice to take the first N items from the iterator
+    # without loading the entire list into memory.
+    repos_to_process = itertools.islice(repos_iterator, args.limit)
+    total_repos_to_process = min(args.limit, total_repos_to_process)
+    print(f"Limiting processing to the first {total_repos_to_process} repositories.", flush=True)
 
   sanitizer = Sanitizer()
   sanitized_data = []
 
-  print(f"Processing {len(repos_to_process)} repositories with up to {args.workers} workers...", flush=True)
+  print(f"Processing {total_repos_to_process} repositories with up to {args.workers} workers...", flush=True)
   with ThreadPoolExecutor(max_workers=args.workers) as executor:
     future_to_repo = {executor.submit(sanitizer.get_repository_metadata, repo): repo for repo in repos_to_process}
 
     processed_count = 0
-    total_repos = len(repos_to_process)
+    total_repos = total_repos_to_process
     for future in as_completed(future_to_repo):
       repo = future_to_repo[future]
       processed_count += 1

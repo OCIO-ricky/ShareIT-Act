@@ -34,8 +34,9 @@ class Repository:
     org_name = credentials.get('github_org')
     print(f"Fetching repository list for organization '{org_name}'... (This may take a moment)")
     org = g.get_organization(org_name)
-    repos = list(
-      org.get_repos(type='all')
-    )
-    print(f"Found {len(repos)} repositories.")
-    return repos
+    # Return the PaginatedList iterator directly. This defers the API calls
+    # until the list is iterated over, preventing a large upfront burst of requests.
+    paginated_repos = org.get_repos(type='all')
+    # The .totalCount attribute gives the total number efficiently without fetching all objects.
+    print(f"Found {paginated_repos.totalCount} repositories.")
+    return paginated_repos
