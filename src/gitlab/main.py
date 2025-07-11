@@ -44,6 +44,16 @@ def main():
     if errors:
         print(f"Exiting due to configuration errors for GitLab instance '{gitlab_url}':\n- " + "\n- ".join(errors), flush=True)
         sys.exit(1)
+    
+    # Debug: Show which token is being used (first 10 chars only)
+    token_preview = credentials.get('gitlab_token', '')[:10] + '...' if credentials.get('gitlab_token') else 'None'
+    print(f"Using token: {token_preview}", flush=True)
+    
+    # Debug: Show token lookup logic
+    domain = gitlab_url.replace("https://", "").replace("http://", "").replace("/", "").replace(".", "_").upper()
+    prefix = f"{domain}_"
+    expected_env_var = f'{prefix}GL_TOKEN'
+    print(f"Looking for env var: {expected_env_var}", flush=True)
 
     # Add proxy and SSL settings from args
     if args.socks_proxy:

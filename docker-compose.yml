@@ -1,21 +1,21 @@
 services:
-  cdcgov-scanner:
-    build: .
-    env_file:
-      - .env
-    volumes:
-      - ./data:/app/data
-      - ./secure/cdcgov_key.pem:/app/secure/cdcgov_key.pem:ro
-    command: ["python", "main.py", "--org", "cdcgov","--workers", "3"]
+  # cdcgov-scanner:
+  #   build: .
+  #   env_file:
+  #     - .env
+  #   volumes:
+  #     - ./data:/app/data
+  #     - ./secure/cdcgov_key.pem:/app/secure/cdcgov_key.pem:ro
+  #   command: ["python", "main.py", "--org", "cdcgov","--workers", "3"]
 
-  cdcent-scanner:
-    build: .
-    env_file:
-      - .env
-    volumes:
-      - ./data:/app/data
-      - ./secure/cdcent_key.pem:/app/secure/cdcent_key.pem:ro
-    command: ["python", "main.py", "--org", "cdcent","--workers", "5"]
+  # cdcent-scanner:
+  #   build: .
+  #   env_file:
+  #     - .env
+  #   volumes:
+  #     - ./data:/app/data
+  #     - ./secure/cdcent_key.pem:/app/secure/cdcent_key.pem:ro
+  #   command: ["python", "main.py", "--org", "cdcent","--workers", "5"]
 
     
   gitlab-biotech-scanner:
@@ -24,4 +24,4 @@ services:
       - .env
     volumes:
       - ./data:/app/data
-    command: ["python", "src/gitlab/main.py", "--url", "https://git.biotech.cdc.gov", "--workers", "5"]
+    command: ["python", "src/gitlab/main.py", "--url", "https://git.biotech.cdc.gov", "--workers", "5", "--no-verify-ssl"]
