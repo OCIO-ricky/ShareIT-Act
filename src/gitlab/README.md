@@ -4,7 +4,7 @@ This directory contains the GitLab equivalent of the GitHub repository processin
 
 ## Files
 
-- `gitlab_main.py` - Main entry point for GitLab processing (equivalent to `main.py` for GitHub)
+- `src/gitlab/main.py` - Main entry point for GitLab processing (equivalent to `main.py` for GitHub)
 - `src/gitlab/config.py` - Configuration management for GitLab credentials and settings
 - `src/gitlab/repository.py` - GitLab API authentication and repository fetching
 - `src/gitlab/sanitize.py` - Data sanitization and transformation to code.json format
@@ -41,28 +41,28 @@ RAW_DATA_DIR=data/raw
 
 ```bash
 # Process all accessible repositories from GitLab.com
-python gitlab_main.py
+python src/gitlab/main.py
 
 # Process repositories from a specific GitLab group
-python gitlab_main.py --group-id 12345
+python src/gitlab/main.py --group-id 12345
 
 # Process repositories from a custom GitLab instance
-python gitlab_main.py --url https://git.cdc.gov --group-id 456
+python src/gitlab/main.py --url https://git.cdc.gov --group-id 456
 
 # Use a SOCKS proxy for corporate networks
-python gitlab_main.py --socks-proxy socks5h://127.0.0.1:1080
+python src/gitlab/main.py --socks-proxy socks5h://127.0.0.1:1080
 
 # Disable SSL verification (for internal instances with self-signed certs)
-python gitlab_main.py --no-verify-ssl
+python src/gitlab/main.py --no-verify-ssl
 
 # Limit processing for testing
-python gitlab_main.py --limit 10
+python src/gitlab/main.py --limit 10
 
 # Specify output directory
-python gitlab_main.py --output /path/to/output
+python src/gitlab/main.py --output /path/to/output
 
 # Use more workers for faster processing
-python gitlab_main.py --workers 20
+python src/gitlab/main.py --workers 20
 ```
 
 ### Token Requirements
@@ -90,7 +90,7 @@ The output follows the same code.json format as the GitHub processing, ensuring 
 
 ## Migration from Legacy GitLab Code
 
-The new GitLab processing (`gitlab_main.py`) replaces the legacy `src/gitlab/cli.py` and provides:
+The new GitLab processing (`src/gitlab/main.py`) replaces the legacy `src/gitlab/cli.py` and provides:
 
 - Better error handling and logging
 - Consistent structure with GitHub processing
