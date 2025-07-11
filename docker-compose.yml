@@ -24,4 +24,4 @@ services:
       - .env
     volumes:
       - ./data:/app/data
-    command: ["python", "gitlab/main.py", "--url", "https://git.biotech.cdc.gov","--workers", "5"]
+    command: ["python", "src/gitlab/main.py", "--url", "https://git.biotech.cdc.gov", "--workers", "5"]

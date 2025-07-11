@@ -1,3 +1,8 @@
+import sys
+import os
+# Add the parent directory to Python path to import from src
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
+
 from src.gitlab.config import GitlabConfig
 from src.gitlab.repository import GitlabRepository
 from src.gitlab.sanitize import GitlabSanitizer
@@ -6,8 +11,6 @@ from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import itertools
 from pathlib import Path
-import sys
-import os
 import json
 import argparse
 
@@ -57,7 +60,7 @@ def main():
     if args.output:
         credentials['raw_data_dir'] = args.output
     elif credentials.get('raw_data_dir') == 'data/raw':
-        credentials['raw_data_dir'] = str(Path(__file__).parent.absolute() / 'data/raw')
+        credentials['raw_data_dir'] = str(Path(__file__).parent.parent.parent.absolute() / 'data/raw')
     print(f'Raw data directory: {credentials["raw_data_dir"]}', flush=True)
 
     # Get repos from GitLab
