@@ -16,7 +16,7 @@ To help CDC developers, project teams, ADIs, and C/I/Os:
 
 ## 🔍 How to Review Metadata
 
-1. Open the latest **[CDC Metadata Browser](https://cdcgov.github.io/ShareIT-Act/index.html)** file published in this repository.
+1. Open the latest **[CDC Metadata Browser](https://ocio-ricky.github.io/ShareIT-Act/index.html)** file published in this repository.
 2. Search by:
    - Repository name
    - Org or CDC program
@@ -56,7 +56,7 @@ Exemption Justification: This code is used only within CDC infrastructure and is
  
 For changes to any other metadata field, you can suggest an update by creating a GitHub issue directly from the browser.
  
-1.  Open the **[CDC Metadata Browser](https://cdcgov.github.io/ShareIT-Act/index.html)**.
+1.  Open the **[CDC Metadata Browser](https://ocio-rickyv.github.io/ShareIT-Act/index.html)**.
 2.  Search for your repository and click the **"Details"** button.
 3.  In the pop-up window, click **"Update Metadata via README"** to see instructions for the most common changes. For other changes, click **"Suggest Other Change via Issue"** (if enabled) to open a pre-filled GitHub issue.
 4.  Describe the changes you need and submit the issue for review.
